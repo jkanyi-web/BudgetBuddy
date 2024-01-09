@@ -1,0 +1,20 @@
+<div id="<%= dom_id transaction %>" class="card mt-3">
+  <div class="card-body">
+    <h5 class="card-title"><strong><%= transaction.title %></strong></h5>
+
+    <p class="card-text">
+      <strong>Amount: $</strong>
+      <%= transaction.amount %>
+    </p>
+
+    <p class="card-text">
+      <strong>Category:</strong>
+      <%= transaction.category_id %>
+    </p>
+
+    <p class="card-text">
+      <strong>User:</strong>
+      <%= transaction.user_id %>
+    </p>
+  </div>
+</div>

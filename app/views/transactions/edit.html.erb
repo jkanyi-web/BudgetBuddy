@@ -1,0 +1,14 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <%= render "form", transaction: @transaction %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-6 offset-md-3">
+      <%= link_to "Show this transaction", category_transaction_path(@transaction.category, @transaction), class: 'btn btn-info mr-2' %>
+      <%= link_to "Back to transactions", category_transactions_path(@transaction.category), class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>
