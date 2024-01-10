@@ -122,7 +122,6 @@ rspec --format documentation
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- Add user profile cover feature.
 - Add user notifications feature.
 - Add user settings feature.
 - Add user account deletion feature.
@@ -132,6 +131,7 @@ rspec --format documentation
 - Add user profile picture upload feature.
 - Add user profile picture delete feature.
 - Add more styling to the app.
+- Add payment feature.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
