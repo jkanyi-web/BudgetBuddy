@@ -7,7 +7,9 @@
     <%= f.password_field :password, autocomplete: "current-password", class: 'form-control big-input no-border-radius', placeholder: 'Password' %>
   </div>
 
-  <%= f.submit "Log in", class: 'btn btn-primary text-center font-weight-bold mt-3' %>
+  <div class="center">
+    <%= f.submit "Log in", class: 'btn btn-primary text-center font-weight-bold mt-3' %>
+  </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
