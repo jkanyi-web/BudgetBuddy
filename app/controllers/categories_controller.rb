@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
     if @category.name.blank?
       redirect_to new_category_path, notice: "Name can't be blank"
     elsif @category.save
-      redirect_to categories_url, notice: 'Category was successfully created.'
+      redirect_to @category, notice: 'Category was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -46,11 +46,18 @@ class CategoriesController < ApplicationController
 
   # DELETE /categories/1 or /categories/1.json
   def destroy
-    @category.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
+    if @category.destroy
+      respond_to do |format|
+        format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      # This will print any error messages to the server log
+      puts @category.errors.full_messages
+      respond_to do |format|
+        format.html { redirect_to categories_url, notice: 'Category could not be destroyed.' }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
     end
   end
 
