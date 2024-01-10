@@ -1,10 +1,9 @@
 class EntitiesController < ApplicationController
-  before_action :set_entity, only: %i[show edit update destroy]
   load_and_authorize_resource
 
   # GET /entities or /entities.json
   def index
-    @entities = Entity.all
+    @entities = current_user.entities.includes(:author, :groups)
   end
 
   # GET /entities/1 or /entities/1.json
@@ -58,12 +57,6 @@ class EntitiesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_entity
-    @entity = Entity.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
   def entity_params
     params.require(:entity).permit(:author_id, :name, :amount, :created_at)
   end

@@ -1,0 +1,39 @@
+<div class="table-responsive text-center my-4">
+  <div class="d-flex justify-content-between align-items-center my-4">
+    <%= link_to '<', root_path, class: 'btn btn-secondary ml-3' %>
+    <h2>Total Amount: <%= @transactions.sum(:amount) %></h2>
+    <div></div>
+  </div>
+
+  <% if @transactions.empty? %>
+    <p>There are no transactions.</p>
+  <% else %>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Title</th>
+          <th>Amount</th>
+          <th>Category</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @transactions.each do |transaction| %>
+          <tr>
+            <td><%= transaction.title %></td>
+            <td><%= transaction.amount %></td>
+            <td><%= transaction.category.name %></td>
+            <td><%= link_to 'Show', category_transaction_path(transaction.category, transaction), class: 'btn btn-info' %></td>
+            <td><%= link_to 'Edit', edit_category_transaction_path(transaction.category, transaction), class: 'btn btn-warning' %></td>
+            <td><%= link_to 'Delete', category_transaction_path(transaction.category, transaction), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+
+<div class="text-center">
+  <%= link_to 'Add New Transaction', new_category_transaction_path(@category), class: 'btn btn-primary' %>
+</div>

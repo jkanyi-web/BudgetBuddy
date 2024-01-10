@@ -1,10 +1,9 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[show edit update destroy]
   load_and_authorize_resource
 
   # GET /groups or /groups.json
   def index
-    @groups = Group.all
+    @groups = Group.includes(:entities).all
   end
 
   # GET /groups/1 or /groups/1.json
@@ -20,7 +19,7 @@ class GroupsController < ApplicationController
 
   # POST /groups or /groups.json
   def create
-    @group = Group.new(group_params)
+    @group = current_user.groups.build(group_params)
 
     respond_to do |format|
       if @group.save
@@ -57,11 +56,6 @@ class GroupsController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_group
-    @group = Group.find(params[:id])
-  end
 
   # Only allow a list of trusted parameters through.
   def group_params
