@@ -46,9 +46,17 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to transaction_url(@transaction), notice: 'Transaction was successfully updated.' }
+        format.turbo_stream do
+          redirect_to category_transaction_url(@transaction.category, @transaction),
+                      notice: 'Transaction was successfully updated.'
+        end
+        format.html do
+          redirect_to category_transaction_url(@transaction.category, @transaction),
+                      notice: 'Transaction was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @transaction }
       else
+        format.turbo_stream { render :edit, status: :unprocessable_entity }
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
