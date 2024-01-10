@@ -1,16 +1,5 @@
 <div class="text-center">
   <%= form_with(model: [@category, @transaction], local: true, html: { class: 'needs-validation', novalidate: '' }) do |form| %>
-    <% if @transaction.errors.any? %>
-      <div class="alert alert-danger" role: "alert">
-        <h4 class="alert-heading"><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h4>
-        <ul>
-        <% @transaction.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
     <div class="form-group">
       <%= form.text_field :title, class: 'form-control big-input no-border-radius', placeholder: 'Title' %>
     </div>

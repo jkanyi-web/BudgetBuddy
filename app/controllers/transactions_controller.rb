@@ -36,7 +36,10 @@ class TransactionsController < ApplicationController
         end
         format.json { render :show, status: :created, location: @transaction }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html do
+          flash.now[:notice] = @transaction.errors.full_messages.to_sentence
+          render :new, status: :unprocessable_entity
+        end
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
@@ -68,7 +71,7 @@ class TransactionsController < ApplicationController
     category = @transaction.category
     @transaction.destroy
     respond_to do |format|
-      format.html { redirect_to category_transactions_url(category), notice: 'Transaction was successfully destroyed.' }
+      format.html { redirect_to category_transactions_url(category), notice: 'Transaction was successfully deleted.' }
       format.json { head :no_content }
     end
   end

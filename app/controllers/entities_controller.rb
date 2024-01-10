@@ -3,7 +3,7 @@ class EntitiesController < ApplicationController
 
   # GET /entities or /entities.json
   def index
-    @entities = current_user.entities
+    @entities = current_user.entities.includes(:author, :groups)
   end
 
   # GET /entities/1 or /entities/1.json
