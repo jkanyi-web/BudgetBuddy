@@ -2,7 +2,8 @@ require 'test_helper'
 
 class GroupTest < ActiveSupport::TestCase
   def setup
-    @user = User.create!(name: 'Example User', email: "test#{rand(1000)}@example.com", password: 'password', password_confirmation: 'password')
+    @user = User.create!(name: 'Example User', email: "test#{rand(1000)}@example.com", password: 'password',
+                         password_confirmation: 'password')
     @group = @user.groups.build(name: 'Example Group', icon: 'example_icon')
   end
 

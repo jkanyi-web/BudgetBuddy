@@ -53,7 +53,6 @@ class EntitiesControllerTest < ActionDispatch::IntegrationTest
     patch entity_url(@entity),
           params: { entity: { author_id: @entity.author_id, name: @entity.name, amount: @entity.amount,
                               created_at: @entity.created_at } }
-    puts @entity.reload.errors.full_messages.to_sentence if @entity.reload.errors.any?
     assert_redirected_to entity_url(@entity)
   end
 

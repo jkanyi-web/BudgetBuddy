@@ -2,7 +2,8 @@ require 'test_helper'
 
 class EntityTest < ActiveSupport::TestCase
   def setup
-    @user = User.create!(name: 'Example User', email: "test#{rand(1000)}@example.com", password: 'password', password_confirmation: 'password')
+    @user = User.create!(name: 'Example User', email: "test#{rand(1000)}@example.com", password: 'password',
+                         password_confirmation: 'password')
     @entity = @user.entities.build(name: 'Example Entity', amount: 100)
   end
 
