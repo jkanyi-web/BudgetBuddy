@@ -2,8 +2,8 @@ require 'test_helper'
 
 class EntityTest < ActiveSupport::TestCase
   def setup
-    @user = User.create!(name: 'Test User')
-    @entity = Entity.new(name: 'Example Entity', amount: 100, author: @user)
+    @user = User.create!(name: 'Example User', email: "test#{rand(1000)}@example.com", password: 'password', password_confirmation: 'password')
+    @entity = @user.entities.build(name: 'Example Entity', amount: 100)
   end
 
   test 'should be valid' do
@@ -27,7 +27,7 @@ class EntityTest < ActiveSupport::TestCase
   test 'should have many groups' do
     assert_equal @entity.groups.count, 0
     # Add a group to the entity
-    group = Group.create!(name: 'Example Group', icon: 'example_icon')
+    group = @user.groups.create!(name: 'Example Group', icon: 'example_icon')
     @entity.groups << group
     @entity.save!
     assert_equal @entity.groups.count, 1
