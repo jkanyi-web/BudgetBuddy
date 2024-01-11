@@ -14,7 +14,6 @@ class GroupsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-
   test 'should get new' do
     get new_group_url
     assert_response :success
