@@ -2,9 +2,7 @@ class EntitiesController < ApplicationController
   load_and_authorize_resource
 
   # GET /entities or /entities.json
-  def index
-    @entities = current_user.entities.includes(:author, :groups)
-  end
+  def index; end
 
   # GET /entities/1 or /entities/1.json
   def show; end
@@ -19,7 +17,7 @@ class EntitiesController < ApplicationController
 
   # POST /entities or /entities.json
   def create
-    @entity = Entity.new(entity_params)
+    @entity = current_user.entities.new(entity_params)
 
     respond_to do |format|
       if @entity.save
@@ -58,6 +56,6 @@ class EntitiesController < ApplicationController
   private
 
   def entity_params
-    params.require(:entity).permit(:author_id, :name, :amount, :created_at)
+    params.require(:entity).permit(:name, :amount, :created_at)
   end
 end

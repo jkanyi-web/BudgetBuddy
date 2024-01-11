@@ -1,11 +1,10 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+# test/fixtures/groups.yml
 one:
-  name: MyString
-  icon: MyString
-  created_at: 2024-01-08 13:20:32
+  name: GroupOne
+  icon: IconOne
+  user: one
 
 two:
-  name: MyString
-  icon: MyString
-  created_at: 2024-01-08 13:20:32
+  name: GroupTwo
+  icon: IconTwo
+  user: two

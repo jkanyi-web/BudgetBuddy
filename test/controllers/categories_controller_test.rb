@@ -3,6 +3,9 @@ require 'test_helper'
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @category = categories(:one)
+    @user = users(:one)
+    sign_in @user
+    @icon = fixture_file_upload('icon.png', 'image/png')
   end
 
   test 'should get index' do
@@ -17,7 +20,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create category' do
     assert_difference('Category.count') do
-      post categories_url, params: { category: { name: @category.name } }
+      post categories_url, params: { category: { name: 'New Category', icon: @icon } } # Modify this line
     end
 
     assert_redirected_to category_url(Category.last)
@@ -34,7 +37,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update category' do
-    patch category_url(@category), params: { category: { name: @category.name } }
+    patch category_url(@category), params: { category: { name: 'Updated Category', icon: @icon } } # Modify this line
     assert_redirected_to category_url(@category)
   end
 
@@ -44,5 +47,18 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to categories_url
+  end
+
+  test 'should not create category with blank name' do
+    assert_no_difference('Category.count') do
+      post categories_url, params: { category: { name: '', icon: @icon } }
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+  test 'should not update category with blank name' do
+    patch category_url(@category), params: { category: { name: '', icon: @icon } }
+    assert_response :unprocessable_entity
   end
 end

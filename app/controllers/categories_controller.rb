@@ -23,9 +23,13 @@ class CategoriesController < ApplicationController
     @category.user_id = current_user.id
 
     if @category.name.blank?
-      redirect_to new_category_path, notice: "Name can't be blank"
+      flash.now[:alert] = "Name can't be blank"
+      render :new, status: :unprocessable_entity
+    elsif @category.icon.blank?
+      flash.now[:alert] = "Icon can't be blank"
+      render :new, status: :unprocessable_entity
     elsif @category.save
-      redirect_to categories_url, notice: 'Category was successfully created.'
+      redirect_to @category, notice: 'Category was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -38,6 +42,7 @@ class CategoriesController < ApplicationController
         format.html { redirect_to category_url(@category), notice: 'Category was successfully updated.' }
         format.json { render :show, status: :ok, location: @category }
       else
+        puts @category.errors.full_messages
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
@@ -46,17 +51,22 @@ class CategoriesController < ApplicationController
 
   # DELETE /categories/1 or /categories/1.json
   def destroy
-    @category.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
+    if @category.destroy
+      respond_to do |format|
+        format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      puts @category.errors.full_messages
+      respond_to do |format|
+        format.html { redirect_to categories_url, notice: 'Category could not be destroyed.' }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   private
 
-  # Only allow a list of trusted parameters through.
   def category_params
     params.require(:category).permit(:name, :icon)
   end
