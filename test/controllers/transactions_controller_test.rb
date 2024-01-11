@@ -1,62 +1,58 @@
 require 'test_helper'
 
 class TransactionsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
+    @user = users(:one)
+    sign_in @user
+    @category = categories(:one)
     @transaction = transactions(:one)
   end
 
   test 'should get index' do
-    get transactions_url
+    get category_transactions_url(@category)
     assert_response :success
+    assert_not_nil assigns(:transactions)
   end
 
   test 'should get new' do
-    get new_transaction_url
+    get new_category_transaction_url(@category)
     assert_response :success
   end
 
   test 'should create transaction' do
     assert_difference('Transaction.count') do
-      post transactions_url,
-           params: { transaction: {
-             amount: @transaction.amount,
-             category_id: @transaction.category_id,
-             title: @transaction.title,
-             user_id: @transaction.user_id
-           } }
+      post category_transactions_url(@category), params: { transaction: { title: 'New Transaction', amount: 10.0 } }
     end
 
-    assert_redirected_to transaction_url(Transaction.last)
+    assert_redirected_to category_transaction_url(@category, Transaction.last)
+    assert_equal 'Transaction was successfully created.', flash[:notice]
   end
 
   test 'should show transaction' do
-    get transaction_url(@transaction)
+    get category_transaction_url(@category, @transaction)
     assert_response :success
   end
 
   test 'should get edit' do
-    get edit_transaction_url(@transaction)
+    get edit_category_transaction_url(@category, @transaction)
     assert_response :success
   end
 
   test 'should update transaction' do
-    patch transaction_url(@transaction),
-          params: {
-            transaction: {
-              amount: @transaction.amount,
-              category_id: @transaction.category_id,
-              title: @transaction.title,
-              user_id: @transaction.user_id
-            }
-          }
-    assert_redirected_to transaction_url(@transaction)
+    patch category_transaction_url(@category, @transaction),
+          params: { transaction: { title: 'Updated Transaction', amount: 20.0 } }
+    assert_redirected_to category_transaction_url(@category, @transaction)
+    assert_equal 'Transaction was successfully updated.', flash[:notice]
   end
 
   test 'should destroy transaction' do
     assert_difference('Transaction.count', -1) do
-      delete transaction_url(@transaction)
+      delete category_transaction_url(@category, @transaction)
     end
 
-    assert_redirected_to transactions_url
+    assert_redirected_to category_transactions_url(@category)
+    assert_equal 'Transaction was successfully deleted.', flash[:notice]
   end
 end

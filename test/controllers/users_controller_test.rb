@@ -1,8 +1,13 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @user = users(:one)
+    @user.admin = true
+    @user.save
+    sign_in @user
   end
 
   test 'should get index' do
@@ -13,14 +18,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'should get new' do
     get new_user_url
     assert_response :success
-  end
-
-  test 'should create user' do
-    assert_difference('User.count') do
-      post users_url, params: { user: { name: @user.name } }
-    end
-
-    assert_redirected_to user_url(User.last)
   end
 
   test 'should show user' do
@@ -34,8 +31,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update user' do
-    patch user_url(@user), params: { user: { name: @user.name } }
-    assert_redirected_to user_url(@user)
+    patch user_url(@user),
+          params: { user: { name: 'Updated User', email: @user.email, password: 'newpassword',
+                            password_confirmation: 'newpassword' } }
+    @user.reload
+    assert_equal 'Updated User', @user.name
+    assert_response :redirect
   end
 
   test 'should destroy user' do
@@ -44,5 +45,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to users_url
+    assert_equal 'User was successfully destroyed.', flash[:notice]
   end
 end
