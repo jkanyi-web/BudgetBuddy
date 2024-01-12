@@ -69,3 +69,13 @@ body {
   background-color: #5fb523 !important;
   border-color: #5fb523 !important;
 }
+
+.border-white {
+  border-width: 2px !important;
+  border-color: antiquewhite !important;
+}
+
+.big {
+  width: 90%;
+  height: 50%;
+}
