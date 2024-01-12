@@ -22,7 +22,7 @@ class EntityTest < ActiveSupport::TestCase
   end
 
   test 'should belong to a user' do
-    assert @entity.author
+    assert @entity.user
   end
 
   test 'should have many groups' do
