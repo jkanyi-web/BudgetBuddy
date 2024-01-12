@@ -4,10 +4,14 @@
 
 <div id="entities">
   <% @entities.each do |entity| %>
-    <%= render entity %>
-    <p>
-      <%= link_to "Show this entity", entity %>
-    </p>
+    <div class="entity">
+      <%= render entity %>
+      <p>
+        <%= link_to "Show this entity", entity %>
+        <%= link_to 'Edit', edit_entity_path(entity) %> |
+        <%= link_to 'Destroy', entity, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
+    </div>
   <% end %>
 </div>
 
