@@ -7,5 +7,8 @@ if [ -f /rails/tmp/pids/server.pid ]; then
 fi
 
 # Prepare database and start Rails server
-bundle exec rake db:prepare
-bundle exec rails server -b 0.0.0.0 -p ${PORT:-3000}
+# Comment out the db:prepare line
+# bundle exec rake db:prepare
+
+# Start Puma, not the default Rails server
+bundle exec puma -C config/puma.rb
