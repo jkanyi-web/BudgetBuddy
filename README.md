@@ -78,7 +78,7 @@ This app is a mobile web application where you can manage your budget: you have 
 
 ## Video presentation <a name="video-presentation"><a/>
 
-You can access the video presentation of the project [here]().
+You can access the video presentation of the project [here](https://www.loom.com/share/a2e5db65dc794de497ef594dae248df3?sid=4626491d-bca6-4b51-8ce0-d6908178bca4).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
