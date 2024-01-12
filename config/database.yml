@@ -21,14 +21,16 @@ development:
   <<: *default
   database: budget_buddy_development
   username: postgres
-  password: <%= Rails.application.credentials.dig(:postgres, :password) %>  host: localhost
+  password: <%= Rails.application.credentials.dig(:postgres, :password) %>
+  host: localhost
   port: 5432
 
 test:
   <<: *default
   database: budget_buddy_test
   username: postgres
-  password: <%= Rails.application.credentials.dig(:postgres, :password) %>  host: localhost
+  password: <%= Rails.application.credentials.dig(:postgres, :password) %>
+  host: localhost
   port: 5432
 
 production:
