@@ -9,6 +9,7 @@ body {
   background-color: lavender;
   font-family: 'Proxima Nova', sans-serif;
   font-weight: 700;
+  color: #434b54 !important;
 }
 
 .btn-outline-dark:hover {
@@ -62,4 +63,9 @@ body {
 .center {
   display: flex;
   justify-content: center;
+}
+
+.btn-warning {
+  background-color: #5fb523!important;
+  border-color: #5fb523!important;
 }
