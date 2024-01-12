@@ -23,7 +23,13 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create transaction' do
     assert_difference('Transaction.count') do
-      post category_transactions_url(@category), params: { transaction: { title: 'New Transaction', amount: 10.0, category_id: @category.id } }
+      post category_transactions_url(@category), params: {
+        transaction: {
+          title: 'New Transaction',
+          amount: 10.0,
+          category_id: @category.id
+        }
+      }
     end
 
     assert_redirected_to category_transaction_url(@category, Transaction.last)
