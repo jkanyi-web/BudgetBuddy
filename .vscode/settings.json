@@ -1,0 +1,9 @@
+{
+    "terminal.integrated.shellArgs.windows": [
+        "-l"
+    ],
+    "files.autoSave": "afterDelay",
+    "solargraph.autoformat": true,
+    "editor.formatOnSave": true,
+    "files.autoSaveDelay": 800
+}

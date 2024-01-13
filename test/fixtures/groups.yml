@@ -1,0 +1,10 @@
+# test/fixtures/groups.yml
+one:
+  name: GroupOne
+  icon: IconOne
+  user: one
+
+two:
+  name: GroupTwo
+  icon: IconTwo
+  user: two

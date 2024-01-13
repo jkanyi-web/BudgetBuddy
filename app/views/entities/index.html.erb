@@ -1,0 +1,16 @@
+<h1>Entities</h1>
+
+<div id="entities">
+  <% @entities.each do |entity| %>
+    <div class="entity">
+      <%= render entity %>
+      <p>
+        <%= link_to "Show this entity", entity %>
+      </p>
+      <p>
+        <%= link_to "Destroy", entity, method: :delete, data: { confirm: "Are you sure?" } %> </p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "New entity", new_entity_path %>

@@ -13,6 +13,8 @@
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
+    - [🚀 Live Demo](#live-demo)
+    - [ Video Presentation](#video-presentation) 
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -67,6 +69,19 @@ This app is a mobile web application where you can manage your budget: you have 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## 🚀 Live Demo <a name="live-demo"></a>
+
+- [Live Demo Link](https://budgetbuddy-production.up.railway.app/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Video presentation <a name="video-presentation"><a/>
+
+You can access the video presentation of the project [here](https://www.loom.com/share/a2e5db65dc794de497ef594dae248df3?sid=4626491d-bca6-4b51-8ce0-d6908178bca4).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 💻 Getting Started <a name="getting-started"></a>
 
 Clone this repository to your desired folder:
@@ -79,7 +94,7 @@ git clone git@github.com:jkanyi-web/BudgetBuddy.git
 
 In order to run this project you need:
 
-- Ruby 3.2.2
+- Ruby 3.3.0
 - Browser (Google Chrome, Mozilla Firefox, Safari or any other browser)
 
 ### Setup
@@ -88,7 +103,6 @@ Clone this repository to your dist folder:
 
 ```
 git clone git@github.com:jkanyi-web/BudgetBuddy.git
-
 cd BudgetBuddy
 ```
 
@@ -123,7 +137,6 @@ rspec --format documentation
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- Add user profile cover feature.
 - Add user notifications feature.
 - Add user settings feature.
 - Add user account deletion feature.
@@ -133,6 +146,7 @@ rspec --format documentation
 - Add user profile picture upload feature.
 - Add user profile picture delete feature.
 - Add more styling to the app.
+- Add payment feature.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

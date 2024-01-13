@@ -1,0 +1,81 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+body {
+  background-color: lavender;
+  font-family: 'Proxima Nova', sans-serif;
+  font-weight: 700;
+  color: #434b54 !important;
+}
+
+.btn-outline-dark:hover {
+  background-color: #3778c2;
+  color: white;
+  border-color: #3778c2;
+}
+
+.lobster {
+  font-family: 'Lobster', sans-serif;
+  font-size: 4rem;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+}
+
+.btn-primary,
+.bg-primary {
+  background-color: #3778c2 !important;
+  border-color: #3778c2 !important;
+}
+
+.img {
+  width: 100px;
+  height: 100px;
+}
+
+.no-border-radius {
+  border-radius: 0 !important;
+}
+
+.big-input {
+  height: 60px;
+  font-size: 16px;
+}
+
+.ml-3 {
+  margin-left: 1rem !important;
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: white;
+  margin-right: 1rem;
+}
+
+.custom-toggler.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-warning {
+  background-color: #5fb523 !important;
+  border-color: #5fb523 !important;
+}
+
+.border-white {
+  border-width: 2px !important;
+  border-color: antiquewhite !important;
+}
+
+.big {
+  width: 90%;
+  height: 50%;
+}

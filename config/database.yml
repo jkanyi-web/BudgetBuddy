@@ -1,0 +1,38 @@
+# PostgreSQL. Versions 9.3 and up are supported.
+#
+# Install the pg driver:
+#   gem install pg
+# On macOS with Homebrew:
+#   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
+# On Windows:
+#   gem install pg
+#       Choose the win32 build.
+#       Install PostgreSQL and put its /bin directory on your path.
+#
+# Configure Using Gemfile
+# gem "pg"
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: budget_buddy_development
+  username: postgres
+  password: <%= Rails.application.credentials.dig(:postgres, :password) %>
+  host: localhost
+  port: 5432
+
+test:
+  <<: *default
+  database: budget_buddy_test
+  username: postgres
+  password: <%= Rails.application.credentials.dig(:postgres, :password) %>
+  host: localhost
+  port: 5432
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>

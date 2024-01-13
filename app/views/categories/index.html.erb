@@ -1,0 +1,27 @@
+<div id="categories" class="row mt-3 mx-3">
+  
+  <% if @categories.empty? %>
+    <p class="text-center">There are no categories.</p>
+  <% else %>
+    <% @categories.each do |category| %>
+      <div class="col-12">
+        <div class="card shadow">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <%= image_tag(category.icon.attached? ? category.icon : 'default_icon.png', class: 'card-img-top img') %>
+            <h5 class="card-title">
+              <%= link_to category.name, category_transactions_path(category), class: 'text-dark text-decoration-none' %>
+            </h5>
+            <div>
+              <p class="card-text"><strong>$ <%= category.transactions.sum(:amount) %></strong></p>
+              <%= link_to 'Delete', category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="fixed-bottom d-flex justify-content-center align-items-center border border-white w-100 btn-warning p-3">
+  <%= link_to "ADD A NEW CATEGORY", new_category_path, class: 'btn btn-warning text-uppercase text-white border border-white py-5 px-5 big' %>
+</div>

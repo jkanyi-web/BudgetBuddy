@@ -1,0 +1,31 @@
+<div class="d-flex flex-column justify-content-center align-items-center vh-100 text-center">
+  <%= form_with(model: @category, local: true, html: { class: 'w-50 mx-auto' }) do |form| %>
+    <% if @category.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+        <ul>
+          <% @category.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field mb-3">
+      <%= form.label :icon, "Upload Icon", class: 'form-label visually-hidden' %>
+      <%= form.file_field :icon, class: 'form-control' %>
+    </div>
+    
+    <div class="mb-3">
+      <%= form.text_field :name, placeholder: 'Name', class: 'form-control' %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Create', class: 'btn btn-primary btn-lg w-100 mb-3' %>
+    </div>
+
+    <%= link_to 'Back', categories_path, class: 'btn btn-outline-dark btn-lg w-100' %>
+  <% end %>
+
+</div>

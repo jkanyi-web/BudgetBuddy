@@ -1,0 +1,7 @@
+<%= render @transaction %>
+
+<div class="text-center mt-3">
+  <td><%= link_to 'Edit this transaction', edit_category_transaction_path(@transaction.category, @transaction), class: 'btn btn-primary' %></td>
+  <%= link_to "Back to transactions", category_transactions_path(@transaction.category), class: 'btn btn-secondary mr-2' %>
+
+</div>
