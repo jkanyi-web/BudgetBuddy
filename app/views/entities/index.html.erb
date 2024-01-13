@@ -1,5 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Entities</h1>
 
 <div id="entities">
@@ -8,9 +6,9 @@
       <%= render entity %>
       <p>
         <%= link_to "Show this entity", entity %>
-        <%= link_to 'Edit', edit_entity_path(entity) %> |
-        <%= link_to 'Destroy', entity, method: :delete, data: { confirm: 'Are you sure?' } %>
       </p>
+      <p>
+        <%= link_to "Destroy", entity, method: :delete, data: { confirm: "Are you sure?" } %> </p>
     </div>
   <% end %>
 </div>

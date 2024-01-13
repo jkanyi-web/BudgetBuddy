@@ -15,6 +15,11 @@ class Ability
         transaction.category.user_id == user.id
       end
       can :read, Transaction
+
+      # Temporary for testing (using Entity.find):
+      unless user.admin?
+        can :manage, Entity, id: Entity.find_by(name: 'MyString').id
+      end
     end
   end
 end

@@ -2,7 +2,9 @@ class EntitiesController < ApplicationController
   load_and_authorize_resource
 
   # GET /entities or /entities.json
-  def index; end
+  def index
+    @entities = Entity.all
+  end
 
   # GET /entities/1 or /entities/1.json
   def show; end
@@ -56,6 +58,6 @@ class EntitiesController < ApplicationController
   private
 
   def entity_params
-    params.require(:entity).permit(:name, :amount, :created_at)
+    params.require(:entity).permit(:name, :amount)
   end
 end
