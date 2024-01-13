@@ -16,7 +16,8 @@ class Ability
       can :read, Transaction
 
       # Temporary for testing (using Entity.find):
-      can(:manage, Entity, id: Entity.find_by(name: 'MyString').id) unless user.admin?
+      entity = Entity.find_by(name: user.name)
+      can(:manage, Entity, id: entity.id) if entity && !user.admin?
     end
   end
 end
