@@ -6,7 +6,6 @@ class Ability
 
     if user.admin?
       can :manage, :all
-      can :manage, User if user.admin?
     else
       can :manage, Category, user_id: user.id
       can :manage, Group, user_id: user.id
@@ -17,9 +16,7 @@ class Ability
       can :read, Transaction
 
       # Temporary for testing (using Entity.find):
-      unless user.admin?
-        can :manage, Entity, id: Entity.find_by(name: 'MyString').id
-      end
+      can(:manage, Entity, id: Entity.find_by(name: 'MyString').id) unless user.admin?
     end
   end
 end
