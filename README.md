@@ -71,7 +71,7 @@ This app is a mobile web application where you can manage your budget: you have 
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://budgetbuddy-production.up.railway.app/)
+- [Live Demo Link](https://budgetbuddy.fly.dev/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
