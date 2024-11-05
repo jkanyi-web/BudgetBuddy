@@ -32,7 +32,7 @@
 
 # 📖 BudgetBuddy <a name="about-project"></a>
 
-This app is a mobile web application where you can manage your budget: you have a list of transactions associated with a category so that you can see how much money you spend and on what.
+This app is a mobile web application where you can manage your budget: you have a list of transactions associated with a category so that you can see how much money you should or are spending and on what.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -71,7 +71,7 @@ This app is a mobile web application where you can manage your budget: you have 
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://budgetbuddy-production.up.railway.app/)
+- [Live Demo Link](https://budgetbuddy.fly.dev/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

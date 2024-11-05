@@ -1,0 +1,17 @@
+databases:
+  - name: BudgetBuddy-database
+    databaseName: budgetbuddy_database_tzqt
+    user: budgetbuddy_database_tzqt_user
+services:
+  - type: web
+    name: BudgetBuddy
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: BudgetBuddy
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false

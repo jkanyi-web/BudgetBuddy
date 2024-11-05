@@ -6,6 +6,11 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Load environment variables from .env file in non-production environments
+if Rails.env.development? || Rails.env.test?
+  Dotenv::Railtie.load
+end
+
 module BudgetBuddy
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

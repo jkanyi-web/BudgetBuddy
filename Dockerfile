@@ -7,11 +7,18 @@ FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 # Rails app lives here
 WORKDIR /rails
 
-# Set production environment
+# Set build environment
+ARG DB_USERNAME
+ARG DB_PASSWORD
+ARG DB_HOST
+
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+    BUNDLE_WITHOUT="development:test" \
+    DB_USERNAME=${DB_USERNAME} \
+    DB_PASSWORD=${DB_PASSWORD} \
+    DB_HOST=${DB_HOST}
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -40,9 +47,11 @@ RUN chmod +x bin/* && \
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-
 # Final stage for app image
 FROM base
+
+# Set production environment for runtime
+ENV RAILS_ENV="production"
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
@@ -52,6 +61,9 @@ RUN apt-get update -qq && \
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
+
+# Set the working directory
+WORKDIR /rails
 
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --create-home --shell /bin/bash && \

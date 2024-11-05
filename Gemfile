@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 ruby '3.3.0'
 
 gem 'cancancan'
-
 gem 'devise'
+gem 'dotenv-rails', groups: %i[development test]
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.2'
