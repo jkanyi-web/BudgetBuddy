@@ -11,6 +11,7 @@ WORKDIR /rails
 ARG DB_USERNAME
 ARG DB_PASSWORD
 ARG DB_HOST
+ARG RAILS_MASTER_KEY
 
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
@@ -18,7 +19,8 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development:test" \
     DB_USERNAME=${DB_USERNAME} \
     DB_PASSWORD=${DB_PASSWORD} \
-    DB_HOST=${DB_HOST}
+    DB_HOST=${DB_HOST} \
+    RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -44,8 +46,8 @@ RUN chmod +x bin/* && \
     sed -i "s/\r$//g" bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+# Precompiling assets for production with the secret RAILS_MASTER_KEY
+RUN ./bin/rails assets:precompile
 
 # Final stage for app image
 FROM base
